@@ -12,5 +12,6 @@ This project is designed primarily for training purposes. I will be use to quick
 ## Run
 ```console
 git clone git@github.com:andrew-js-wright/project-template.git
+cd project-template
 vagrant up
 ```
