@@ -45,3 +45,5 @@ export AWS_KEYPATH='your-keypath'
 
 vagrant up
 ```
+
+> You will need to create a new security group on your AWS account to forward the correct ports - in particular SSH should be open. Then reference this group in the Vagrantfile.
