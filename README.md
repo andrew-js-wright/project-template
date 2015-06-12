@@ -29,3 +29,19 @@ Navigate to the following location in your web broswer
 ```bash
 localhost:9000
 ```
+
+## Run on AWS
+In order to run on AWS run the following:
+
+```
+git checkout aws-setup
+vagrant plugin install vagrant-aws
+vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+
+export AWS_KEY='your-key'
+export AWS_SECRET='your-secret'
+export AWS_KEYNAME='your-keyname'
+export AWS_KEYPATH='your-keypath'
+
+vagrant up
+```

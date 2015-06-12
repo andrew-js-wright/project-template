@@ -5,7 +5,7 @@ Vagrant::configure(2) do |config|
   end
 
   config.vm.provision :shell, inline: "apt-get update -y"
-  config.vm.provision :shell, inline: "apt-get install -y openjdk-7-jre"
+  config.vm.provision :shell, inline: "apt-get install -y puppet"
   # Enable the Puppet provisioner
   config.vm.provision :puppet, :module_path => "puppet/modules", :manifests_path => "puppet"
 
