@@ -1,38 +1,38 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
-    <actions/>
-    <description></description>
-    <keepDependencies>false</keepDependencies>
-    <properties/>
-    <scm class="hudson.scm.NullSCM"/>
-    <canRoam>true</canRoam>
-    <disabled>false</disabled>
-    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
-    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-    <triggers>
-        <jenkins.triggers.ReverseBuildTrigger>
-            <spec></spec>
-            <upstreamProjects>build-sample-app</upstreamProjects>
-            <threshold>
-                <name>SUCCESS</name>
-                <ordinal>0</ordinal>
-                <color>BLUE</color>
-                <completeBuild>true</completeBuild>
-            </threshold>
-        </jenkins.triggers.ReverseBuildTrigger>
-    </triggers>
-    <concurrentBuild>false</concurrentBuild>
-    <builders>
-        <hudson.tasks.Shell>
-            <command>rm -rf /opt/latest-sample-app/*
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <jenkins.triggers.ReverseBuildTrigger>
+      <spec></spec>
+      <upstreamProjects>build-sample-app</upstreamProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </jenkins.triggers.ReverseBuildTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>rm -rf /opt/latest-sample-app/*
                 zip=&quot;/var/lib/jenkins/jobs/build-sample-app/workspace/target/universal/*.zip&quot;
                 dest=&quot;/opt/latest-sample-app/&quot;
                 unzip -d &quot;$dest&quot; &quot;$zip&quot;
                 cd $dest*
                 find . -mindepth 1 -maxdepth 1 -exec mv -t.. -- {} +
-                /sbin/restart sample-app</command>
-        </hudson.tasks.Shell>
-    </builders>
-    <publishers/>
-    <buildWrappers/>
+                /sbin/start sample-app || /sbin/restart sample-app</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
 </project>
