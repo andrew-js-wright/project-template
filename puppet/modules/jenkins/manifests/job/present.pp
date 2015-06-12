@@ -75,7 +75,6 @@ define jenkins::job::present(
     onlyif  => "test -e ${config_path}",
     unless  => "diff -b -q ${config_path} ${tmp_config_path}",
     require => File[$tmp_config_path],
-    notify  => Exec['reload-jenkins'],
   }
 
   # Enable or disable the job (if necessary)
