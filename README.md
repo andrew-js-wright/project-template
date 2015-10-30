@@ -38,12 +38,12 @@ git checkout aws-setup
 vagrant plugin install vagrant-aws
 vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
 
-export AWS_KEY='your-key'
-export AWS_SECRET='your-secret'
-export AWS_KEYNAME='your-keyname'
-export AWS_KEYPATH='your-keypath'
+export AWS_KEY='your-key' #the access key from the my account section of AWS
+export AWS_SECRET='your-secret' # the secret key from the my account section of AWS
+export AWS_KEYNAME='your-keyname' # the keypair name from aws
+export AWS_KEYPATH='your-keypath' # location of .pem file of the keypair
 
-vagrant up
+vagrant up --provider=aws
 ```
 
 > You will need to create a new security group on your AWS account to forward the correct ports - in particular SSH should be open. Then reference this group in the Vagrantfile.
