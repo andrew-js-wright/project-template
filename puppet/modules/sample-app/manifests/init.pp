@@ -15,6 +15,8 @@ class sample-app {
     }
 
     package {"openjdk-7-jre": ensure => "installed"} 
+    package {"maven": ensure => "installed"} 
+    package {"mysql-server": ensure => "installed"} 
 
     class { 'upstart':
        user_jobs => true,
@@ -26,8 +28,8 @@ class sample-app {
        respawn_limit  => '5 10',
        user           => 'jenkins',
        group          => 'jenkins',
-       chdir          => '/opt/team-2-app',
-       exec           => "bin/sample-play-app",
+       chdir          => '/opt/team-1-app',
+       exec           => "java -jar app.jar server config.yml",
     }
 
     upstart::job { 'team-2-app':
@@ -37,6 +39,6 @@ class sample-app {
        user           => 'jenkins',
        group          => 'jenkins',
        chdir          => '/opt/team-2-app',
-       exec           => "bin/sample-play-app",
+       exec           => "java -jar app.jar server config.yml",
     }
 }
