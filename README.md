@@ -38,12 +38,16 @@ git checkout aws-setup
 vagrant plugin install vagrant-aws
 vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
 
-export AWS_KEY='your-key' #the access key from the my account section of AWS
-export AWS_SECRET='your-secret' # the secret key from the my account section of AWS
-export AWS_KEYNAME='your-keyname' # the keypair name from aws
-export AWS_KEYPATH='your-keypath' # location of .pem file of the keypair
+export AWS_KEY='your-key'         # The key referenced in the 'my account' section of AWS console
+export AWS_SECRET='your-secret'   # The secret code at account level of AWS, accessable through the 'my account' screen
+export AWS_KEYNAME='your-keyname' # The name of the key pair set up on the AWS console
+export AWS_KEYPATH='your-keypath' # path to .pem file
 
 vagrant up --provider=aws
 ```
 
 > You will need to create a new security group on your AWS account to forward the correct ports - in particular SSH should be open. Then reference this group in the Vagrantfile.
+
+## Limitations
+
+1. Currently, in the puppet manifests, files are referenced used instance specific module guids. This seems to be an issue with the AWS provider for vagrant. This will result in the first time you run 'vagrant up' you will see an error about it not being able to find the file referenced at a given file path with an ugly URL. To fix this you will have to copy the ugly file path from the error and paste it into the web-app puppet init manifest.
