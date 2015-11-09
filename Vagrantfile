@@ -19,10 +19,10 @@ Vagrant::configure(2) do |config|
        aws.ami = "ami-47a23a30"
        aws.region = "eu-west-1"
        aws.instance_type = "t2.micro"
-       aws.security_groups = "launch-wizard-1"
+       aws.security_groups = "project-drill"
 
        override.vm.box = "dummy"
        override.ssh.username = "ubuntu"
-       override.ssh.private_key_path = ENV['AWS_KEYPATH']
+       override.ssh.private_key_path = "/Users/andrewwr/.ssh/id_rsa" #ENV['AWS_KEYPATH']
   end
 end
